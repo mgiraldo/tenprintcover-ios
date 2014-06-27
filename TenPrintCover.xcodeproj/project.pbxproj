@@ -1,0 +1,463 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CCAC4FB2195B3DD700D775F5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCAC4FB1195B3DD700D775F5 /* Foundation.framework */; };
+		CCAC4FB4195B3DD700D775F5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCAC4FB3195B3DD700D775F5 /* CoreGraphics.framework */; };
+		CCAC4FB6195B3DD700D775F5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCAC4FB5195B3DD700D775F5 /* UIKit.framework */; };
+		CCAC4FBC195B3DD700D775F5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CCAC4FBA195B3DD700D775F5 /* InfoPlist.strings */; };
+		CCAC4FBE195B3DD700D775F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAC4FBD195B3DD700D775F5 /* main.m */; };
+		CCAC4FC2195B3DD700D775F5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAC4FC1195B3DD700D775F5 /* AppDelegate.m */; };
+		CCAC4FD4195B3DD700D775F5 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCAC4FD3195B3DD700D775F5 /* XCTest.framework */; };
+		CCAC4FD5195B3DD700D775F5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCAC4FB1195B3DD700D775F5 /* Foundation.framework */; };
+		CCAC4FD6195B3DD700D775F5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCAC4FB5195B3DD700D775F5 /* UIKit.framework */; };
+		CCAC4FDE195B3DD700D775F5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CCAC4FDC195B3DD700D775F5 /* InfoPlist.strings */; };
+		CCAC4FE0195B3DD700D775F5 /* TenPrintCoverTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAC4FDF195B3DD700D775F5 /* TenPrintCoverTests.m */; };
+		CCAC4FEB195B3EAC00D775F5 /* TenPrintCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = CCAC4FEA195B3EAC00D775F5 /* TenPrintCoverView.m */; };
+		CCAC5028195DBF3B00D775F5 /* covers.json2 in Resources */ = {isa = PBXBuildFile; fileRef = CCAC5027195DBF3B00D775F5 /* covers.json2 */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CCAC4FD7195B3DD700D775F5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CCAC4FA6195B3DD700D775F5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CCAC4FAD195B3DD700D775F5;
+			remoteInfo = TenPrintCover;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CCAC4FAE195B3DD700D775F5 /* TenPrintCover.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TenPrintCover.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCAC4FB1195B3DD700D775F5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CCAC4FB3195B3DD700D775F5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		CCAC4FB5195B3DD700D775F5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		CCAC4FB9195B3DD700D775F5 /* TenPrintCover-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TenPrintCover-Info.plist"; sourceTree = "<group>"; };
+		CCAC4FBB195B3DD700D775F5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CCAC4FBD195B3DD700D775F5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CCAC4FBF195B3DD700D775F5 /* TenPrintCover-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TenPrintCover-Prefix.pch"; sourceTree = "<group>"; };
+		CCAC4FC0195B3DD700D775F5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		CCAC4FC1195B3DD700D775F5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		CCAC4FD2195B3DD700D775F5 /* TenPrintCoverTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TenPrintCoverTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCAC4FD3195B3DD700D775F5 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		CCAC4FDB195B3DD700D775F5 /* TenPrintCoverTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TenPrintCoverTests-Info.plist"; sourceTree = "<group>"; };
+		CCAC4FDD195B3DD700D775F5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CCAC4FDF195B3DD700D775F5 /* TenPrintCoverTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TenPrintCoverTests.m; sourceTree = "<group>"; };
+		CCAC4FE9195B3EAC00D775F5 /* TenPrintCoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TenPrintCoverView.h; sourceTree = "<group>"; };
+		CCAC4FEA195B3EAC00D775F5 /* TenPrintCoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TenPrintCoverView.m; sourceTree = "<group>"; };
+		CCAC5027195DBF3B00D775F5 /* covers.json2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = covers.json2; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CCAC4FAB195B3DD700D775F5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCAC4FB4195B3DD700D775F5 /* CoreGraphics.framework in Frameworks */,
+				CCAC4FB6195B3DD700D775F5 /* UIKit.framework in Frameworks */,
+				CCAC4FB2195B3DD700D775F5 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CCAC4FCF195B3DD700D775F5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCAC4FD4195B3DD700D775F5 /* XCTest.framework in Frameworks */,
+				CCAC4FD6195B3DD700D775F5 /* UIKit.framework in Frameworks */,
+				CCAC4FD5195B3DD700D775F5 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CCAC4FA5195B3DD700D775F5 = {
+			isa = PBXGroup;
+			children = (
+				CCAC4FB7195B3DD700D775F5 /* TenPrintCover */,
+				CCAC4FD9195B3DD700D775F5 /* TenPrintCoverTests */,
+				CCAC4FB0195B3DD700D775F5 /* Frameworks */,
+				CCAC4FAF195B3DD700D775F5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CCAC4FAF195B3DD700D775F5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CCAC4FAE195B3DD700D775F5 /* TenPrintCover.app */,
+				CCAC4FD2195B3DD700D775F5 /* TenPrintCoverTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CCAC4FB0195B3DD700D775F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CCAC4FB1195B3DD700D775F5 /* Foundation.framework */,
+				CCAC4FB3195B3DD700D775F5 /* CoreGraphics.framework */,
+				CCAC4FB5195B3DD700D775F5 /* UIKit.framework */,
+				CCAC4FD3195B3DD700D775F5 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CCAC4FB7195B3DD700D775F5 /* TenPrintCover */ = {
+			isa = PBXGroup;
+			children = (
+				CCAC4FC0195B3DD700D775F5 /* AppDelegate.h */,
+				CCAC4FC1195B3DD700D775F5 /* AppDelegate.m */,
+				CCAC4FE9195B3EAC00D775F5 /* TenPrintCoverView.h */,
+				CCAC4FEA195B3EAC00D775F5 /* TenPrintCoverView.m */,
+				CCAC5027195DBF3B00D775F5 /* covers.json2 */,
+				CCAC4FB8195B3DD700D775F5 /* Supporting Files */,
+			);
+			path = TenPrintCover;
+			sourceTree = "<group>";
+		};
+		CCAC4FB8195B3DD700D775F5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CCAC4FB9195B3DD700D775F5 /* TenPrintCover-Info.plist */,
+				CCAC4FBA195B3DD700D775F5 /* InfoPlist.strings */,
+				CCAC4FBD195B3DD700D775F5 /* main.m */,
+				CCAC4FBF195B3DD700D775F5 /* TenPrintCover-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CCAC4FD9195B3DD700D775F5 /* TenPrintCoverTests */ = {
+			isa = PBXGroup;
+			children = (
+				CCAC4FDF195B3DD700D775F5 /* TenPrintCoverTests.m */,
+				CCAC4FDA195B3DD700D775F5 /* Supporting Files */,
+			);
+			path = TenPrintCoverTests;
+			sourceTree = "<group>";
+		};
+		CCAC4FDA195B3DD700D775F5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CCAC4FDB195B3DD700D775F5 /* TenPrintCoverTests-Info.plist */,
+				CCAC4FDC195B3DD700D775F5 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CCAC4FAD195B3DD700D775F5 /* TenPrintCover */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CCAC4FE3195B3DD700D775F5 /* Build configuration list for PBXNativeTarget "TenPrintCover" */;
+			buildPhases = (
+				CCAC4FAA195B3DD700D775F5 /* Sources */,
+				CCAC4FAB195B3DD700D775F5 /* Frameworks */,
+				CCAC4FAC195B3DD700D775F5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TenPrintCover;
+			productName = TenPrintCover;
+			productReference = CCAC4FAE195B3DD700D775F5 /* TenPrintCover.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CCAC4FD1195B3DD700D775F5 /* TenPrintCoverTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CCAC4FE6195B3DD700D775F5 /* Build configuration list for PBXNativeTarget "TenPrintCoverTests" */;
+			buildPhases = (
+				CCAC4FCE195B3DD700D775F5 /* Sources */,
+				CCAC4FCF195B3DD700D775F5 /* Frameworks */,
+				CCAC4FD0195B3DD700D775F5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CCAC4FD8195B3DD700D775F5 /* PBXTargetDependency */,
+			);
+			name = TenPrintCoverTests;
+			productName = TenPrintCoverTests;
+			productReference = CCAC4FD2195B3DD700D775F5 /* TenPrintCoverTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CCAC4FA6195B3DD700D775F5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = NYPL_Labs;
+				TargetAttributes = {
+					CCAC4FD1195B3DD700D775F5 = {
+						TestTargetID = CCAC4FAD195B3DD700D775F5;
+					};
+				};
+			};
+			buildConfigurationList = CCAC4FA9195B3DD700D775F5 /* Build configuration list for PBXProject "TenPrintCover" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CCAC4FA5195B3DD700D775F5;
+			productRefGroup = CCAC4FAF195B3DD700D775F5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CCAC4FAD195B3DD700D775F5 /* TenPrintCover */,
+				CCAC4FD1195B3DD700D775F5 /* TenPrintCoverTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CCAC4FAC195B3DD700D775F5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCAC5028195DBF3B00D775F5 /* covers.json2 in Resources */,
+				CCAC4FBC195B3DD700D775F5 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CCAC4FD0195B3DD700D775F5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCAC4FDE195B3DD700D775F5 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CCAC4FAA195B3DD700D775F5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCAC4FEB195B3EAC00D775F5 /* TenPrintCoverView.m in Sources */,
+				CCAC4FC2195B3DD700D775F5 /* AppDelegate.m in Sources */,
+				CCAC4FBE195B3DD700D775F5 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CCAC4FCE195B3DD700D775F5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CCAC4FE0195B3DD700D775F5 /* TenPrintCoverTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CCAC4FD8195B3DD700D775F5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CCAC4FAD195B3DD700D775F5 /* TenPrintCover */;
+			targetProxy = CCAC4FD7195B3DD700D775F5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CCAC4FBA195B3DD700D775F5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CCAC4FBB195B3DD700D775F5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CCAC4FDC195B3DD700D775F5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CCAC4FDD195B3DD700D775F5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CCAC4FE1195B3DD700D775F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CCAC4FE2195B3DD700D775F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CCAC4FE4195B3DD700D775F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TenPrintCover/TenPrintCover-Prefix.pch";
+				INFOPLIST_FILE = "TenPrintCover/TenPrintCover-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		CCAC4FE5195B3DD700D775F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TenPrintCover/TenPrintCover-Prefix.pch";
+				INFOPLIST_FILE = "TenPrintCover/TenPrintCover-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		CCAC4FE7195B3DD700D775F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TenPrintCover.app/TenPrintCover";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TenPrintCover/TenPrintCover-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "TenPrintCoverTests/TenPrintCoverTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		CCAC4FE8195B3DD700D775F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/TenPrintCover.app/TenPrintCover";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TenPrintCover/TenPrintCover-Prefix.pch";
+				INFOPLIST_FILE = "TenPrintCoverTests/TenPrintCoverTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CCAC4FA9195B3DD700D775F5 /* Build configuration list for PBXProject "TenPrintCover" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CCAC4FE1195B3DD700D775F5 /* Debug */,
+				CCAC4FE2195B3DD700D775F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CCAC4FE3195B3DD700D775F5 /* Build configuration list for PBXNativeTarget "TenPrintCover" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CCAC4FE4195B3DD700D775F5 /* Debug */,
+				CCAC4FE5195B3DD700D775F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CCAC4FE6195B3DD700D775F5 /* Build configuration list for PBXNativeTarget "TenPrintCoverTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CCAC4FE7195B3DD700D775F5 /* Debug */,
+				CCAC4FE8195B3DD700D775F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CCAC4FA6195B3DD700D775F5 /* Project object */;
+}
