@@ -12,12 +12,13 @@
 
 @synthesize bookAuthor;
 @synthesize bookTitle;
+@synthesize bookId;
 @synthesize shapeColor;
 @synthesize baseColor;
 @synthesize viewScale;
 
 float baseSaturation = 0.9;
-float baseBrightness = 0.9;
+float baseBrightness = 0.8;
 float fontSize = 14.0;
 
 int gridCount = 7;
@@ -184,16 +185,37 @@ float ofMap(float value, float inputMin, float inputMax, float outputMin, float 
 	// top color rectangle
 	CGContextFillRect(context, CGRectMake(artworkStartX, 0, self.bounds.size.width, (int)(margin * viewScale)));
 	CGContextFillRect(context, CGRectMake(artworkStartX, artworkStartY, self.bounds.size.width, self.bounds.size.width));
-	NSLog(@"grid: %d %f", gridSize, self.bounds.size.width);
+//	NSLog(@"grid: %d %f", gridSize, self.bounds.size.width);
 	NSString *c64Title = [self c64Convert];
 	// println("c64Title.length(): "+c64Title.length());
+	int offset = (self.bounds.size.width - (gridSize * gridCount)) * .5;
 	for (i=0; i<gridCount; i++) {
 		for (j=0; j<gridCount; j++) {
 			char character = [c64Title characterAtIndex:(item%c64Title.length)];
-			[self drawShape:character xPos:artworkStartX+(j*gridSize) yPos:artworkStartY+(i*gridSize) size:gridSize];
+			[self drawShape:character xPos:offset+artworkStartX+(j*gridSize) yPos:offset+artworkStartY+(i*gridSize) size:gridSize];
 			item++;
 		}
 	}
+}
+
+-(void)saveToDisk {
+	if(self.bookId == nil) {
+		NSLog(@"Error: could not save PNG. Set book id first!");
+		return;
+	}
+	UIGraphicsBeginImageContext(self.bounds.size);
+    [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+	
+	// Create paths to output images
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentsDirectory = [paths objectAtIndex:0];
+	NSString *path = [NSString stringWithFormat:@"%@/%@.png", documentsDirectory, self.bookId];
+	NSLog(@"saving to: %@", path);
+	
+	// Write image to PNG
+	[UIImagePNGRepresentation(image) writeToFile:path atomically:YES];
 }
 
 -(void)drawShape:(char)k xPos:(int)x yPos:(int)y size:(int)s {

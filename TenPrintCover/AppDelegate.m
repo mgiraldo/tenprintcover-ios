@@ -73,6 +73,18 @@ BOOL isDown = NO;
 												 withScale:1.0];
     [self.window addSubview: self.coverView];
 	
+	/*********
+	 SAVING IMAGE AS PNG
+	***********/
+	if (NO) { // this will never execute. remove to enable saving
+		self.coverView.bookId = [[self.bookList objectAtIndex:currentBook] objectForKey:@"identifier"];// first set the id
+		[self.coverView saveToDisk];
+	}
+	/*********
+	 END SAVING IMAGE
+	 ***********/
+	
+	
     // SMALL Cover bounds.
     CGRect smallBounds = CGRectMake(180,20,120,180);
     
