@@ -27,7 +27,7 @@ int margin = 5;
 int artworkStartX = 0;
 int artworkStartY = 75;
 int shapeThickness = 4;
-int titleHeight = 70;
+int titleHeight = 62;
 int authorHeight = 25;
 
 NSString *c64Letters = @" qQwWeErRtTyYuUiIoOpPaAsSdDfFgGhHjJkKlL:zZxXcCvVbBnNmM1234567890.";
@@ -75,7 +75,7 @@ NSString *c64Letters = @" qQwWeErRtTyYuUiIoOpPaAsSdDfFgGhHjJkKlL:zZxXcCvVbBnNmM1
 		self.baseColor = self.shapeColor;
 		self.shapeColor = tmpColor;
 	}
-	NSLog(@"counts: %d seed: %f baseColor: %@ shapeColor: %@", counts, colorSeed, self.baseColor, self.shapeColor);
+//	NSLog(@"counts: %d seed: %f baseColor: %@ shapeColor: %@", counts, colorSeed, self.baseColor, self.shapeColor);
 }
 
 -(void)drawBackground {
@@ -118,8 +118,8 @@ float ofMap(float value, float inputMin, float inputMax, float outputMin, float 
 	
     // Set the lineSpacing.
 	CGFloat lineHeight = fontSize * viewScale;
-	CGFloat lineSpacing = 1.0;
-	NSLog(@"font: %f scale: %f", fontSize, viewScale);
+	CGFloat lineSpacing = 0;
+//	NSLog(@"font: %f scale: %f", fontSize, viewScale);
 	
 	// Create the paragraph style settings.
 	CTParagraphStyleSetting setting[4] = {
@@ -157,15 +157,15 @@ float ofMap(float value, float inputMin, float inputMax, float outputMin, float 
 	
 	// draw
 	[self drawString:(__bridge CFAttributedStringRef)(boldStringToDraw) inRect:CGRectMake(
-					artworkStartX+margin,
-					margin*2,
-					self.bounds.size.width-(2*margin),
+					(artworkStartX+margin) * viewScale,
+					margin*2 * viewScale,
+					self.bounds.size.width-(2*margin * viewScale),
 					titleHeight*viewScale) inContext:context];
 
 	[self drawString:(__bridge CFAttributedStringRef)(regularStringToDraw) inRect:CGRectMake(
-				  artworkStartX+margin,
+				  (artworkStartX+margin) * viewScale,
 				  titleHeight*viewScale,
-				  self.bounds.size.width-(2*margin),
+				  self.bounds.size.width-(2*margin * viewScale),
 				  authorHeight) inContext:context];
 
 	// clean up
@@ -177,13 +177,14 @@ float ofMap(float value, float inputMin, float inputMax, float outputMin, float 
 -(void)drawArtwork {
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	[self breakGrid];
-	int i,j,gridSize=self.bounds.size.width/gridCount;
+	int i,j;
+	int gridSize = self.bounds.size.width/gridCount;
 	int item = 0;
 	CGContextSetFillColorWithColor(context, self.baseColor.CGColor);
 	// top color rectangle
-	CGContextFillRect(context, CGRectMake(artworkStartX, 0, self.bounds.size.width, margin));
+	CGContextFillRect(context, CGRectMake(artworkStartX, 0, self.bounds.size.width, (int)(margin * viewScale)));
 	CGContextFillRect(context, CGRectMake(artworkStartX, artworkStartY, self.bounds.size.width, self.bounds.size.width));
-	NSLog(@"rect: %d %d %f %d", artworkStartX, 0, self.bounds.size.width, margin);
+	NSLog(@"grid: %d %f", gridSize, self.bounds.size.width);
 	NSString *c64Title = [self c64Convert];
 	// println("c64Title.length(): "+c64Title.length());
 	for (i=0; i<gridCount; i++) {

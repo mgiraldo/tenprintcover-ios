@@ -41,6 +41,8 @@ BOOL isDown = NO;
 												  action:@selector(handleLongPress:)];
 	[self.window addGestureRecognizer:longPress];
 	
+	[self getCover];
+	
 	[self.window makeKeyAndVisible];
     return YES;
 }
@@ -57,7 +59,7 @@ BOOL isDown = NO;
 //	NSLog(@"title: %@ author: %@", self.bookTitle, self.bookAuthor);
 	
     // BIG Cover bounds.
-    CGRect bounds = CGRectMake(10,20,160,250);
+    CGRect bounds = CGRectMake(10,20,160,240);
     
     // Create a view and add it to the window.
 //	NSLog(@"cover: %@", self.coverView);
@@ -72,7 +74,7 @@ BOOL isDown = NO;
     [self.window addSubview: self.coverView];
 	
     // SMALL Cover bounds.
-    CGRect smallBounds = CGRectMake(180,20,128,200);
+    CGRect smallBounds = CGRectMake(180,20,120,180);
     
     // Create a view and add it to the window.
 	//	NSLog(@"cover: %@", self.coverView);
@@ -83,17 +85,17 @@ BOOL isDown = NO;
     self.smallCoverView = [[TenPrintCoverView alloc] initWithFrame:smallBounds
 														 withTitle:self.bookTitle
 														withAuthor:self.bookAuthor
-													  withScale:0.8];
+													  withScale:0.75];
     [self.window addSubview: self.smallCoverView];
 }
 
 - (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
-	NSLog(@"single tap");
+//	NSLog(@"single tap");
 	[self getCover];
 }
 
 - (void)handleLongPress:(UILongPressGestureRecognizer *)recognizer {
-	NSLog(@"long press");
+//	NSLog(@"long press");
 	[self getCover];
 }
 
