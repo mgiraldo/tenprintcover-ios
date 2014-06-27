@@ -1,4 +1,8 @@
-tenprintcover-ios
+10 PRINT "BOOK COVER"
 =================
 
-book cover-generating algorithm based on 10PRINT
+Authors: [Mauricio Giraldo Arteaga] / NYPL Labs
+
+Book cover-generating algorithm based on [10PRINT](http://10print.org/).
+
+[Mauricio Giraldo Arteaga]: https://twitter.com/mgiraldo
