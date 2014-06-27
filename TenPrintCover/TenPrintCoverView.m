@@ -399,23 +399,22 @@ float ofMap(float value, float inputMin, float inputMax, float outputMin, float 
 			[self drawTriangle:x y1:y+shapeThickness x2:x y2:y+s x3:x+s-shapeThickness y3:y+s inContext:context];
 			break;
 		case '7':
-			CGContextFillRect(context, CGRectMake(x, y, s, shapeThickness*2));
+			CGContextFillRect(context, CGRectMake(x, y, s, shapeThickness));
 			break;
 		case '8':
-			CGContextFillRect(context, CGRectMake(x, y, s, shapeThickness*3));
+			CGContextFillRect(context, CGRectMake(x, y, s, shapeThickness*2));
 			break;
 		case '9':
-			CGContextFillRect(context, CGRectMake(x, y, shapeThickness, s));
-			CGContextFillRect(context, CGRectMake(x, y+s-(shapeThickness*3), s, shapeThickness*3));
+			CGContextFillRect(context, CGRectMake(x, y+s-(shapeThickness*2), s, shapeThickness*2));
 			break;
 		case '4':
-			CGContextFillRect(context, CGRectMake(x, y, shapeThickness*2, s));
+			CGContextFillRect(context, CGRectMake(x, y, shapeThickness, s));
 			break;
 		case '5':
-			CGContextFillRect(context, CGRectMake(x, y, shapeThickness*3, s));
+			CGContextFillRect(context, CGRectMake(x, y, shapeThickness*2, s));
 			break;
 		case '6':
-			CGContextFillRect(context, CGRectMake(x+s-(shapeThickness*3), y, shapeThickness*3, s));
+			CGContextFillRect(context, CGRectMake(x+s-(shapeThickness*3), y, shapeThickness*2, s));
 			break;
 		case '1':
 			CGContextFillRect(context, CGRectMake(x, y+(s/2)-(shapeThickness/2), s, shapeThickness));

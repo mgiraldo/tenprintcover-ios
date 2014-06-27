@@ -20,7 +20,7 @@ BOOL isDown = NO;
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor colorWithRed:.94 green:.94 blue:.4 alpha:.9];
+    self.window.backgroundColor = [UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1];
 	
 	// books
 	NSError* error;
@@ -59,7 +59,7 @@ BOOL isDown = NO;
 //	NSLog(@"title: %@ author: %@", self.bookTitle, self.bookAuthor);
 	
     // BIG Cover bounds.
-    CGRect bounds = CGRectMake(10,20,160,240);
+    CGRect bounds = CGRectMake(10,30,160,240);
     
     // Create a view and add it to the window.
 //	NSLog(@"cover: %@", self.coverView);
@@ -86,7 +86,7 @@ BOOL isDown = NO;
 	
 	
     // SMALL Cover bounds.
-    CGRect smallBounds = CGRectMake(180,20,120,180);
+    CGRect smallBounds = CGRectMake(190,30,120,180);
     
     // Create a view and add it to the window.
 	//	NSLog(@"cover: %@", self.coverView);
