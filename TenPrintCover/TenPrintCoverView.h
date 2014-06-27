@@ -20,5 +20,6 @@
 @property(nonatomic, readwrite) UIColor* baseColor;
 @property(nonatomic, readwrite) UIColor* shapeColor;
 @property(nonatomic) float viewScale;
+@property(nonatomic) float shapeThickness;
 
 @end

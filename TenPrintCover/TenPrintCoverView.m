@@ -16,10 +16,12 @@
 @synthesize shapeColor;
 @synthesize baseColor;
 @synthesize viewScale;
+@synthesize shapeThickness;
 
 float baseSaturation = 0.9;
 float baseBrightness = 0.8;
 float fontSize = 14.0;
+float baseThickness = 4.0;
 
 int gridCount = 7;
 int minTitle = 2;
@@ -27,8 +29,7 @@ int maxTitle = 60;
 int margin = 5;
 int artworkStartX = 0;
 int artworkStartY = 75;
-int shapeThickness = 4;
-int titleHeight = 62;
+int titleHeight = 61;
 int authorHeight = 25;
 
 NSString *c64Letters = @" qQwWeErRtTyYuUiIoOpPaAsSdDfFgGhHjJkKlL:zZxXcCvVbBnNmM1234567890.";
@@ -49,6 +50,7 @@ NSString *c64Letters = @" qQwWeErRtTyYuUiIoOpPaAsSdDfFgGhHjJkKlL:zZxXcCvVbBnNmM1
         self.bookTitle = title;
 		self.bookAuthor = author;
 		self.viewScale = scale;
+		self.shapeThickness = baseThickness * scale;
     }
     return self;
 }
@@ -189,6 +191,7 @@ float ofMap(float value, float inputMin, float inputMax, float outputMin, float 
 	NSString *c64Title = [self c64Convert];
 	// println("c64Title.length(): "+c64Title.length());
 	int offset = (self.bounds.size.width - (gridSize * gridCount)) * .5;
+	shapeThickness = baseThickness * self.viewScale;
 	for (i=0; i<gridCount; i++) {
 		for (j=0; j<gridCount; j++) {
 			char character = [c64Title characterAtIndex:(item%c64Title.length)];
