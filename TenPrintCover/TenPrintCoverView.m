@@ -565,6 +565,9 @@ float ofMap(float value, float inputMin, float inputMax, float outputMin, float 
 	}
 	free(origins);
 	
+	CFRelease(aFrame);
+	CFRelease(framesetter);
+	
 	CGContextRestoreGState(context);
 }
 
