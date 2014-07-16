@@ -9,7 +9,7 @@ Authors: [Mauricio Giraldo Arteaga] / NYPL Labs
 ![Andrew Lang](https://github.com/mgiraldo/tenprintcover-ios/raw/master/example/example4.png)
 ![Katherine Thurston](https://github.com/mgiraldo/tenprintcover-ios/raw/master/example/example5.png)
 ![Santeri Alkio](https://github.com/mgiraldo/tenprintcover-ios/raw/master/example/example6.png)
-![William Shakespeare](https://github.com/mgiraldo/tenprintcover-ios/raw/master/example/example7.png)
+![Lewis Carroll](https://github.com/mgiraldo/tenprintcover-ios/raw/master/example/example7.png)
 ![Camille Mauclair](https://github.com/mgiraldo/tenprintcover-ios/raw/master/example/example8.png)
 
 Authors: [Mauricio Giraldo Arteaga] / NYPL Labs
