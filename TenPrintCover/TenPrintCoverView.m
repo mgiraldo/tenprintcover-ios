@@ -29,7 +29,7 @@ int maxTitle = 60;
 int margin = 5;
 int artworkStartX = 0;
 int artworkStartY = 75;
-int titleHeight = 61;
+int titleHeight = 80;
 int authorHeight = 25;
 
 NSString *c64Letters = @" qQwWeErRtTyYuUiIoOpPaAsSdDfFgGhHjJkKlL:zZxXcCvVbBnNmM1234567890.";
@@ -185,7 +185,9 @@ float ofMap(float value, float inputMin, float inputMax, float outputMin, float 
 	int item = 0;
 	CGContextSetFillColorWithColor(context, self.baseColor.CGColor);
 	// top color rectangle
-	CGContextFillRect(context, CGRectMake(artworkStartX, 0, self.bounds.size.width, (int)(margin * viewScale)));
+	CGContextFillRect(context, CGRectMake(artworkStartX, 0, self.bounds.size.width, ceil(margin * viewScale * .3)));
+	CGContextFillRect(context, CGRectMake(artworkStartX, 0, ceil(margin * viewScale * .3), artworkStartY));
+	CGContextFillRect(context, CGRectMake(artworkStartX+self.bounds.size.width-ceil(margin*viewScale*.3), 0, ceil(margin * viewScale * .3), artworkStartY));
 	CGContextFillRect(context, CGRectMake(artworkStartX, artworkStartY, self.bounds.size.width, self.bounds.size.width));
 //	NSLog(@"grid: %d %f", gridSize, self.bounds.size.width);
 	NSString *c64Title = [self c64Convert];
@@ -215,7 +217,7 @@ float ofMap(float value, float inputMin, float inputMax, float outputMin, float 
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *documentsDirectory = [paths objectAtIndex:0];
 	NSString *path = [NSString stringWithFormat:@"%@/%@.png", documentsDirectory, self.bookId];
-	NSLog(@"saving to: %@", path);
+//	NSLog(@"saving to: %@", path);
 	
 	// Write image to PNG
 	[UIImagePNGRepresentation(image) writeToFile:path atomically:YES];

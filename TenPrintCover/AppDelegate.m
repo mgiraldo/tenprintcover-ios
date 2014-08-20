@@ -41,6 +41,7 @@ BOOL isDown = NO;
 												  action:@selector(handleLongPress:)];
 	[self.window addGestureRecognizer:longPress];
 	
+//	t = [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(getCover) userInfo:nil repeats:YES];
 	[self getCover];
 	
 	[self.window makeKeyAndVisible];
@@ -51,6 +52,8 @@ BOOL isDown = NO;
 	currentBook++;
 	if (currentBook >= self.bookList.count) {
 		currentBook = 0;
+		
+		if (t) [t invalidate];
 	}
 
 	self.bookTitle = [[self.bookList objectAtIndex:currentBook] objectForKey:@"title"];
@@ -59,7 +62,7 @@ BOOL isDown = NO;
 //	NSLog(@"title: %@ author: %@", self.bookTitle, self.bookAuthor);
 	
     // BIG Cover bounds.
-    CGRect bounds = CGRectMake(10,30,160,240);
+    CGRect bounds = CGRectMake(5,30,200,300);
     
     // Create a view and add it to the window.
 //	NSLog(@"cover: %@", self.coverView);
@@ -86,7 +89,7 @@ BOOL isDown = NO;
 	
 	
     // SMALL Cover bounds.
-    CGRect smallBounds = CGRectMake(190,30,120,180);
+    CGRect smallBounds = CGRectMake(160,100,150,225);
     
     // Create a view and add it to the window.
 	//	NSLog(@"cover: %@", self.coverView);

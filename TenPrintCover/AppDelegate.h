@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "TenPrintCoverView.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate> {
+
+NSTimer *t;
+	
+}
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) NSString *bookTitle;
