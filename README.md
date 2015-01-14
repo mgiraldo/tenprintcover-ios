@@ -1,6 +1,8 @@
 # 10 PRINT "BOOK COVER"
 ## for iOS/Objective-C
 
+Read about this in more detail in [this blog post](http://www.nypl.org/blog/2014/09/03/generative-ebook-covers).
+
 Authors: [Mauricio Giraldo Arteaga] / NYPL Labs
 
 ![Herman Melville](https://github.com/mgiraldo/tenprintcover-ios/raw/master/example/example1.png)
