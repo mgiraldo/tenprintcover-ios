@@ -21,5 +21,6 @@ NSTimer *t;
 @property (strong, nonatomic) NSArray *bookList;
 @property (strong, nonatomic) TenPrintCoverView *coverView;
 @property (strong, nonatomic) TenPrintCoverView *smallCoverView;
+@property (strong, nonatomic) TenPrintCoverView *blankCoverView;
 
 @end

@@ -11,7 +11,9 @@
 
 @interface TenPrintCoverView : UIView
 
--(id)initWithFrame:(CGRect)frame withTitle:(NSString *)title withAuthor:(NSString *)author withScale:(float)scale;
+-(instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
+-(instancetype)initWithFrame:(CGRect)frame withTitle:(NSString *)title withAuthor:(NSString *)author withScale:(float)scale;
+-(instancetype)initWithFrame:(CGRect)frame withTitle:(NSString *)title withAuthor:(NSString *)author withScale:(float)scale andPlainStyle:(BOOL)isPlain;
 -(void)saveToDisk;
 
 @property(nonatomic, readwrite) NSString* bookTitle;
@@ -20,6 +22,5 @@
 @property(nonatomic, readwrite) UIColor* baseColor;
 @property(nonatomic, readwrite) UIColor* shapeColor;
 @property(nonatomic) float viewScale;
-@property(nonatomic) float shapeThickness;
 
 @end

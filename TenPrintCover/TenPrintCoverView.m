@@ -8,33 +8,32 @@
 
 #import "TenPrintCoverView.h"
 
+@interface TenPrintCoverView ()
+
+@property(nonatomic) BOOL plainStyle;
+@property(nonatomic) int gridCount;
+
+@end
+
+static NSString * const c64Letters = @" qQwWeErRtTyYuUiIoOpPaAsSdDfFgGhHjJkKlL:zZxXcCvVbBnNmM1234567890.";
+static float const baseSaturation = 0.9;
+static float const baseBrightness = 0.8;
+static float const fontSize = 14.0;
+static float const baseThickness = 4.0;
+
+static float const minTitle = 2;
+static float const maxTitle = 60;
+static float const titleScale = 1.3; // how much bigger the title is than the author
+static float const margin = 5;
+static float artworkStartX = 0;
+static float artworkStartY = 75;
+static float const titleHeight = 80;
+static float const authorHeight = 25;
+static float shapeThickness;
+
 @implementation TenPrintCoverView
 
-@synthesize bookAuthor;
-@synthesize bookTitle;
-@synthesize bookId;
-@synthesize shapeColor;
-@synthesize baseColor;
-@synthesize viewScale;
-@synthesize shapeThickness;
-
-float baseSaturation = 0.9;
-float baseBrightness = 0.8;
-float fontSize = 14.0;
-float baseThickness = 4.0;
-
-int gridCount = 7;
-int minTitle = 2;
-int maxTitle = 60;
-int margin = 5;
-int artworkStartX = 0;
-int artworkStartY = 75;
-int titleHeight = 80;
-int authorHeight = 25;
-
-NSString *c64Letters = @" qQwWeErRtTyYuUiIoOpPaAsSdDfFgGhHjJkKlL:zZxXcCvVbBnNmM1234567890.";
-
-- (id)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -43,16 +42,24 @@ NSString *c64Letters = @" qQwWeErRtTyYuUiIoOpPaAsSdDfFgGhHjJkKlL:zZxXcCvVbBnNmM1
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame withTitle:(NSString *)title withAuthor:(NSString *)author withScale:(float)scale
+- (instancetype)initWithFrame:(CGRect)frame withTitle:(NSString *)title withAuthor:(NSString *)author withScale:(float)scale
 {
     self = [super initWithFrame:frame];
     if (self) {
+		shapeThickness = baseThickness * scale;
         self.bookTitle = title;
-		self.bookAuthor = author;
-		self.viewScale = scale;
-		self.shapeThickness = baseThickness * scale;
+        self.bookAuthor = author;
+        self.viewScale = scale;
+        self.plainStyle = NO;
     }
     return self;
+}
+
+-(instancetype)initWithFrame:(CGRect)frame withTitle:(NSString *)title withAuthor:(NSString *)author withScale:(float)scale andPlainStyle:(BOOL)isPlain;
+{
+    TenPrintCoverView *myCover = [self initWithFrame:frame withTitle:title withAuthor:author withScale:scale];
+    myCover.plainStyle = isPlain;
+    return myCover;
 }
 
 -(void)drawRect:(CGRect)rect
@@ -83,9 +90,15 @@ NSString *c64Letters = @" qQwWeErRtTyYuUiIoOpPaAsSdDfFgGhHjJkKlL:zZxXcCvVbBnNmM1
 
 -(void)drawBackground {
 	CGContextRef context = UIGraphicsGetCurrentContext();
-	// fill with white
-	CGContextSetRGBFillColor(context, 1, 1, 1, 1);
-	CGContextFillRect(context, self.bounds);
+    if (!self.plainStyle) {
+        // fill with white
+        CGContextSetRGBFillColor(context, 1, 1, 1, 1);
+        CGContextFillRect(context, self.bounds);
+    } else {
+        // fill with gray
+        CGContextSetRGBFillColor(context, .9, .9, .9, 1);
+        CGContextFillRect(context, self.bounds);
+    }
 }
 
 float ofMap(float value, float inputMin, float inputMax, float outputMin, float outputMax, bool clamp) {
@@ -117,10 +130,10 @@ float ofMap(float value, float inputMin, float inputMax, float outputMin, float 
 	CGColorRef color = [UIColor colorWithRed:0 green:0 blue:0 alpha:1].CGColor;
 
 	// fonts
-    CTFontRef boldFont = CTFontCreateWithName(CFSTR("AvenirNext-Bold"), fontSize * viewScale, NULL);
+    CTFontRef boldFont = CTFontCreateWithName(CFSTR("AvenirNext-Bold"), fontSize * titleScale * self.viewScale, NULL);
 	
     // Set the lineSpacing.
-	CGFloat lineHeight = fontSize * viewScale;
+	CGFloat lineHeight = fontSize * self.viewScale * titleScale;
 	CGFloat lineSpacing = 0;
 //	NSLog(@"font: %f scale: %f", fontSize, viewScale);
 	
@@ -145,7 +158,7 @@ float ofMap(float value, float inputMin, float inputMax, float outputMin, float 
 	NSAttributedString *boldStringToDraw = [[NSAttributedString alloc] initWithString:self.bookTitle
 																	   attributes:boldAttributesDict];
 
-	CTFontRef regularFont = CTFontCreateWithName(CFSTR("AvenirNext-Regular"), fontSize * viewScale, NULL);
+	CTFontRef regularFont = CTFontCreateWithName(CFSTR("AvenirNext-Regular"), fontSize * self.viewScale, NULL);
 	
 	NSDictionary *regularAttributesDict = [NSDictionary dictionaryWithObjectsAndKeys:
 										   (__bridge id)regularFont, (id)kCTFontAttributeName,
@@ -160,16 +173,16 @@ float ofMap(float value, float inputMin, float inputMax, float outputMin, float 
 	
 	// draw
 	[self drawString:(__bridge CFAttributedStringRef)(boldStringToDraw) inRect:CGRectMake(
-					(artworkStartX+margin) * viewScale,
-					margin*2 * viewScale,
-					self.bounds.size.width-(2*margin * viewScale),
-					titleHeight*viewScale) inContext:context];
+					(artworkStartX+margin) * self.viewScale,
+					margin*2 * self.viewScale,
+					self.bounds.size.width-(2*margin * self.viewScale),
+					titleHeight*self.viewScale) inContext:context];
 
 	[self drawString:(__bridge CFAttributedStringRef)(regularStringToDraw) inRect:CGRectMake(
-				  (artworkStartX+margin) * viewScale,
-				  titleHeight*viewScale,
-				  self.bounds.size.width-(2*margin * viewScale),
-				  authorHeight) inContext:context];
+				  (artworkStartX+margin) * self.viewScale,
+				  titleHeight*self.viewScale,
+				  self.bounds.size.width-(2*margin * self.viewScale),
+				  authorHeight * self.viewScale) inContext:context];
 
 	// clean up
 	CFRelease(paragraphStyle);
@@ -179,28 +192,30 @@ float ofMap(float value, float inputMin, float inputMax, float outputMin, float 
 
 -(void)drawArtwork {
 	CGContextRef context = UIGraphicsGetCurrentContext();
-	[self breakGrid];
-	int i,j;
-	int gridSize = self.bounds.size.width/gridCount;
-	int item = 0;
-	CGContextSetFillColorWithColor(context, self.baseColor.CGColor);
-	// top color rectangle
-	CGContextFillRect(context, CGRectMake(artworkStartX, 0, self.bounds.size.width, ceil(margin * viewScale * .3)));
-	CGContextFillRect(context, CGRectMake(artworkStartX, 0, ceil(margin * viewScale * .3), artworkStartY));
-	CGContextFillRect(context, CGRectMake(artworkStartX+self.bounds.size.width-ceil(margin*viewScale*.3), 0, ceil(margin * viewScale * .3), artworkStartY));
-	CGContextFillRect(context, CGRectMake(artworkStartX, artworkStartY, self.bounds.size.width, self.bounds.size.width));
-//	NSLog(@"grid: %d %f", gridSize, self.bounds.size.width);
-	NSString *c64Title = [self c64Convert];
-	// println("c64Title.length(): "+c64Title.length());
-	int offset = (self.bounds.size.width - (gridSize * gridCount)) * .5;
-	shapeThickness = baseThickness * self.viewScale;
-	for (i=0; i<gridCount; i++) {
-		for (j=0; j<gridCount; j++) {
-			char character = [c64Title characterAtIndex:(item%c64Title.length)];
-			[self drawShape:character xPos:offset+artworkStartX+(j*gridSize) yPos:offset+artworkStartY+(i*gridSize) size:gridSize];
-			item++;
-		}
-	}
+    if (!self.plainStyle) {
+        [self breakGrid];
+        int i,j;
+        int gridSize = self.bounds.size.width/self.gridCount;
+        int item = 0;
+        CGContextSetFillColorWithColor(context, self.baseColor.CGColor);
+        // top color rectangle
+        CGContextFillRect(context, CGRectMake(artworkStartX, 0, self.bounds.size.width, ceil(margin * self.viewScale * .3)));
+        CGContextFillRect(context, CGRectMake(artworkStartX, 0, ceil(margin * self.viewScale * .3), artworkStartY));
+        CGContextFillRect(context, CGRectMake(artworkStartX+self.bounds.size.width-ceil(margin*self.viewScale*.3), 0, ceil(margin * self.viewScale * .3), artworkStartY));
+        CGContextFillRect(context, CGRectMake(artworkStartX, artworkStartY, self.bounds.size.width, self.bounds.size.width));
+        //	NSLog(@"grid: %d %f", gridSize, self.bounds.size.width);
+        NSString *c64Title = [self c64Convert];
+        // println("c64Title.length(): "+c64Title.length());
+        int offset = (self.bounds.size.width - (gridSize * self.gridCount)) * .5;
+        shapeThickness = baseThickness * self.viewScale;
+        for (i=0; i<self.gridCount; i++) {
+            for (j=0; j<self.gridCount; j++) {
+                char character = [c64Title characterAtIndex:(item%c64Title.length)];
+                [self drawShape:character xPos:offset+artworkStartX+(j*gridSize) yPos:offset+artworkStartY+(i*gridSize) size:gridSize];
+                item++;
+            }
+        }
+    }
 }
 
 -(void)saveToDisk {
@@ -217,7 +232,7 @@ float ofMap(float value, float inputMin, float inputMax, float outputMin, float 
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *documentsDirectory = [paths objectAtIndex:0];
 	NSString *path = [NSString stringWithFormat:@"%@/%@.png", documentsDirectory, self.bookId];
-//	NSLog(@"saving to: %@", path);
+	NSLog(@"saving to: %@", path);
 	
 	// Write image to PNG
 	[UIImagePNGRepresentation(image) writeToFile:path atomically:YES];
@@ -455,10 +470,10 @@ float ofMap(float value, float inputMin, float inputMax, float outputMin, float 
 	for (i=0; i<len; i++) {
 		letter = [self.bookTitle characterAtIndex:i];
 		NSRange range = [self indexOf:letter inString:c64Letters];
-		//		NSLog(@"letter: %c num: %d range: %d", letter, (int)letter, range.length);
 		if (range.length == 0) {
 			int anIndex = (int)(letter%c64Letters.length);
 			letter = [c64Letters characterAtIndex:anIndex];
+//			NSLog(@"letter: %c num: %d idx: %d len: %d orig:%d mod:%d", letter, (int)letter, anIndex, c64Letters.length, (char)[self.bookTitle characterAtIndex:i], (int)(((char)[self.bookTitle characterAtIndex:i])%c64Letters.length));
 		}
 		[result appendString:[NSString stringWithFormat:@"%c", letter]];
 	}
@@ -478,7 +493,7 @@ float ofMap(float value, float inputMin, float inputMax, float outputMin, float 
 	int len = (int)self.bookTitle.length;
 	if (len < minTitle) len = minTitle;
 	if (len > maxTitle) len = maxTitle;
-	gridCount = (int)ofMap(len, minTitle, maxTitle, 2, 11, NO);
+	self.gridCount = (int)ofMap(len, minTitle, maxTitle, 2, 11, NO);
 }
 
 -(void)drawTriangle:(float)x1 y1:(float)y1 x2:(float)x2 y2:(float)y2 x3:(float)x3 y3:(float)y3 inContext:(CGContextRef)context {

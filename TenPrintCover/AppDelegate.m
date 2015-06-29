@@ -89,7 +89,7 @@ BOOL isDown = NO;
 	
 	
     // SMALL Cover bounds.
-    CGRect smallBounds = CGRectMake(160,100,150,225);
+    CGRect smallBounds = CGRectMake(160,100,100,150);
     
     // Create a view and add it to the window.
 	//	NSLog(@"cover: %@", self.coverView);
@@ -100,8 +100,17 @@ BOOL isDown = NO;
     self.smallCoverView = [[TenPrintCoverView alloc] initWithFrame:smallBounds
 														 withTitle:self.bookTitle
 														withAuthor:self.bookAuthor
-													  withScale:0.75];
+													  withScale:0.5];
     [self.window addSubview: self.smallCoverView];
+
+    CGRect blankBounds = CGRectMake(50,160,100,150);
+
+    self.blankCoverView = [[TenPrintCoverView alloc] initWithFrame:blankBounds
+                                                         withTitle:self.bookTitle
+                                                        withAuthor:self.bookAuthor
+                                                         withScale:0.5
+                                                     andPlainStyle:YES];
+    [self.window addSubview: self.blankCoverView];
 }
 
 - (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
