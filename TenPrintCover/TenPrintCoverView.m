@@ -12,6 +12,7 @@
 
 @property(nonatomic) BOOL plainStyle;
 @property(nonatomic) int gridCount;
+@property(nonatomic) float shapeThickness;
 
 @end
 
@@ -29,7 +30,6 @@ static float artworkStartX = 0;
 static float artworkStartY = 75;
 static float const titleHeight = 80;
 static float const authorHeight = 25;
-static float shapeThickness;
 
 @implementation TenPrintCoverView
 
@@ -46,7 +46,7 @@ static float shapeThickness;
 {
     self = [super initWithFrame:frame];
     if (self) {
-		shapeThickness = baseThickness * scale;
+		self.shapeThickness = baseThickness * scale;
         self.bookTitle = title;
         self.bookAuthor = author;
         self.viewScale = scale;
@@ -207,7 +207,7 @@ float ofMap(float value, float inputMin, float inputMax, float outputMin, float 
         NSString *c64Title = [self c64Convert];
         // println("c64Title.length(): "+c64Title.length());
         int offset = (self.bounds.size.width - (gridSize * self.gridCount)) * .5;
-        shapeThickness = baseThickness * self.viewScale;
+        self.shapeThickness = baseThickness * self.viewScale;
         for (i=0; i<self.gridCount; i++) {
             for (j=0; j<self.gridCount; j++) {
                 char character = [c64Title characterAtIndex:(item%c64Title.length)];
@@ -250,25 +250,25 @@ float ofMap(float value, float inputMin, float inputMax, float outputMin, float 
 		case 'w':
 		case 'W':
 			CGContextFillEllipseInRect(context, CGRectMake(x, y, s, s));
-			s = s-(shapeThickness*2);
+			s = s-(self.shapeThickness*2);
 			CGContextSetFillColorWithColor(context, self.baseColor.CGColor);
-			CGContextFillEllipseInRect(context, CGRectMake(x+shapeThickness, y+shapeThickness, s, s));
+			CGContextFillEllipseInRect(context, CGRectMake(x+self.shapeThickness, y+self.shapeThickness, s, s));
 			break;
 		case 'e':
 		case 'E':
-			CGContextFillRect(context, CGRectMake(x, y+shapeThickness, s, shapeThickness));
+			CGContextFillRect(context, CGRectMake(x, y+self.shapeThickness, s, self.shapeThickness));
 			break;
 		case 'r':
 		case 'R':
-			CGContextFillRect(context, CGRectMake(x, y+s-(shapeThickness*2), s, shapeThickness));
+			CGContextFillRect(context, CGRectMake(x, y+s-(self.shapeThickness*2), s, self.shapeThickness));
 			break;
 		case 't':
 		case 'T':
-			CGContextFillRect(context, CGRectMake(x+shapeThickness, y, shapeThickness, s));
+			CGContextFillRect(context, CGRectMake(x+self.shapeThickness, y, self.shapeThickness, s));
 			break;
 		case 'y':
 		case 'Y':
-			CGContextFillRect(context, CGRectMake(x+s-(shapeThickness*2), y, shapeThickness, s));
+			CGContextFillRect(context, CGRectMake(x+s-(self.shapeThickness*2), y, self.shapeThickness, s));
 			break;
 		case 'u':
 		case 'U':
@@ -279,8 +279,8 @@ float ofMap(float value, float inputMin, float inputMax, float outputMin, float 
 			CGContextDrawPath(context, 0);
 
 			CGContextSetFillColorWithColor(context, self.baseColor.CGColor);
-			CGContextMoveToPoint(context, x+shapeThickness, y+s+shapeThickness);
-			CGContextAddArc(context, x+s, y+s, s-shapeThickness, M_PI, M_PI+M_PI_2, 0);
+			CGContextMoveToPoint(context, x+self.shapeThickness, y+s+self.shapeThickness);
+			CGContextAddArc(context, x+s, y+s, s-self.shapeThickness, M_PI, M_PI+M_PI_2, 0);
 			CGContextAddLineToPoint(context, x+s, y+s);
 			CGContextClosePath(context);
 			CGContextDrawPath(context, 0);
@@ -294,21 +294,21 @@ float ofMap(float value, float inputMin, float inputMax, float outputMin, float 
 			CGContextDrawPath(context, 0);
 			
 			CGContextSetFillColorWithColor(context, self.baseColor.CGColor);
-			CGContextMoveToPoint(context, x, y+shapeThickness);
-			CGContextAddArc(context, x, y+s, s-shapeThickness, M_PI+M_PI_2, 0, 0);
+			CGContextMoveToPoint(context, x, y+self.shapeThickness);
+			CGContextAddArc(context, x, y+s, s-self.shapeThickness, M_PI+M_PI_2, 0, 0);
 			CGContextAddLineToPoint(context, x, y+s);
 			CGContextClosePath(context);
 			CGContextDrawPath(context, 0);
 			break;
 		case 'o':
 		case 'O':
-			CGContextFillRect(context, CGRectMake(x, y, s, shapeThickness));
-			CGContextFillRect(context, CGRectMake(x, y, shapeThickness, s));
+			CGContextFillRect(context, CGRectMake(x, y, s, self.shapeThickness));
+			CGContextFillRect(context, CGRectMake(x, y, self.shapeThickness, s));
 			break;
 		case 'p':
 		case 'P':
-			CGContextFillRect(context, CGRectMake(x, y, s, shapeThickness));
-			CGContextFillRect(context, CGRectMake(x+s-shapeThickness, y, shapeThickness, s));
+			CGContextFillRect(context, CGRectMake(x, y, s, self.shapeThickness));
+			CGContextFillRect(context, CGRectMake(x+s-self.shapeThickness, y, self.shapeThickness, s));
 			break;
 		case 'a':
 		case 'A':
@@ -320,19 +320,19 @@ float ofMap(float value, float inputMin, float inputMax, float outputMin, float 
 			break;
 		case 'd':
 		case 'D':
-			CGContextFillRect(context, CGRectMake(x, y+(shapeThickness*2), s, shapeThickness));
+			CGContextFillRect(context, CGRectMake(x, y+(self.shapeThickness*2), s, self.shapeThickness));
 			break;
 		case 'f':
 		case 'F':
-			CGContextFillRect(context, CGRectMake(x, y+s-(shapeThickness*3), s, shapeThickness));
+			CGContextFillRect(context, CGRectMake(x, y+s-(self.shapeThickness*3), s, self.shapeThickness));
 			break;
 		case 'g':
 		case 'G':
-			CGContextFillRect(context, CGRectMake(x+(shapeThickness*2), y, shapeThickness, s));
+			CGContextFillRect(context, CGRectMake(x+(self.shapeThickness*2), y, self.shapeThickness, s));
 			break;
 		case 'h':
 		case 'H':
-			CGContextFillRect(context, CGRectMake(x+s-(shapeThickness*3), y, shapeThickness, s));
+			CGContextFillRect(context, CGRectMake(x+s-(self.shapeThickness*3), y, self.shapeThickness, s));
 			break;
 		case 'j':
 		case 'J':
@@ -343,8 +343,8 @@ float ofMap(float value, float inputMin, float inputMax, float outputMin, float 
 			CGContextDrawPath(context, 0);
 			
 			CGContextSetFillColorWithColor(context, self.baseColor.CGColor);
-			CGContextMoveToPoint(context, x+s, y+s-shapeThickness);
-			CGContextAddArc(context, x+s, y, s-shapeThickness, M_PI_2, M_PI, 0);
+			CGContextMoveToPoint(context, x+s, y+s-self.shapeThickness);
+			CGContextAddArc(context, x+s, y, s-self.shapeThickness, M_PI_2, M_PI, 0);
 			CGContextAddLineToPoint(context, x+s, y);
 			CGContextClosePath(context);
 			CGContextDrawPath(context, 0);
@@ -358,20 +358,20 @@ float ofMap(float value, float inputMin, float inputMax, float outputMin, float 
 			CGContextDrawPath(context, 0);
 			
 			CGContextSetFillColorWithColor(context, self.baseColor.CGColor);
-			CGContextMoveToPoint(context, x+s-shapeThickness, y);
-			CGContextAddArc(context, x, y, s-shapeThickness, 0, M_PI_2, 0);
+			CGContextMoveToPoint(context, x+s-self.shapeThickness, y);
+			CGContextAddArc(context, x, y, s-self.shapeThickness, 0, M_PI_2, 0);
 			CGContextAddLineToPoint(context, x, y);
 			CGContextClosePath(context);
 			CGContextDrawPath(context, 0);
 			break;
 		case 'l':
 		case 'L':
-			CGContextFillRect(context, CGRectMake(x, y, shapeThickness, s));
-			CGContextFillRect(context, CGRectMake(x, y+s-shapeThickness, s, shapeThickness));
+			CGContextFillRect(context, CGRectMake(x, y, self.shapeThickness, s));
+			CGContextFillRect(context, CGRectMake(x, y+s-self.shapeThickness, s, self.shapeThickness));
 			break;
 		case ':':
-			CGContextFillRect(context, CGRectMake(x+s-shapeThickness, y, shapeThickness, s));
-			CGContextFillRect(context, CGRectMake(x, y+s-shapeThickness, s, shapeThickness));
+			CGContextFillRect(context, CGRectMake(x+s-self.shapeThickness, y, self.shapeThickness, s));
+			CGContextFillRect(context, CGRectMake(x, y+s-self.shapeThickness, s, self.shapeThickness));
 			break;
 		case 'z':
 		case 'Z':
@@ -380,78 +380,78 @@ float ofMap(float value, float inputMin, float inputMax, float outputMin, float 
 			break;
 		case 'x':
 		case 'X':
-			CGContextFillEllipseInRect(context, CGRectMake(x+(s/2)-shapeThickness, y+(s/3)-shapeThickness, shapeThickness*2, shapeThickness*2));
-			CGContextFillEllipseInRect(context, CGRectMake(x+(s/3)-shapeThickness, y+s-(s/3)-shapeThickness, shapeThickness*2, shapeThickness*2));
-			CGContextFillEllipseInRect(context, CGRectMake(x+s-(s/3)-shapeThickness, y+s-(s/3)-shapeThickness, shapeThickness*2, shapeThickness*2));
+			CGContextFillEllipseInRect(context, CGRectMake(x+(s/2)-self.shapeThickness, y+(s/3)-self.shapeThickness, self.shapeThickness*2, self.shapeThickness*2));
+			CGContextFillEllipseInRect(context, CGRectMake(x+(s/3)-self.shapeThickness, y+s-(s/3)-self.shapeThickness, self.shapeThickness*2, self.shapeThickness*2));
+			CGContextFillEllipseInRect(context, CGRectMake(x+s-(s/3)-self.shapeThickness, y+s-(s/3)-self.shapeThickness, self.shapeThickness*2, self.shapeThickness*2));
 			break;
 		case 'c':
 		case 'C':
-			CGContextFillRect(context, CGRectMake(x, y+(shapeThickness*3), s, shapeThickness));
+			CGContextFillRect(context, CGRectMake(x, y+(self.shapeThickness*3), s, self.shapeThickness));
 			break;
 		case 'v':
 		case 'V':
 			CGContextFillRect(context, CGRectMake(x, y, s, s));
 			CGContextSetFillColorWithColor(context, self.baseColor.CGColor);
-			[self drawTriangle:x+shapeThickness y1:y x2:x+(s/2) y2:y+(s/2)-shapeThickness x3:x+s-shapeThickness y3:y inContext:context];
-			[self drawTriangle:x y1:y+shapeThickness x2:x+(s/2)-shapeThickness y2:y+(s/2) x3:x y3:y+s-shapeThickness inContext:context];
-			[self drawTriangle:x+shapeThickness y1:y+s x2:x+(s/2) y2:y+(s/2)+shapeThickness x3:x+s-shapeThickness y3:y+s inContext:context];
-			[self drawTriangle:x+s y1:y+shapeThickness x2:x+s y2:y+s-shapeThickness x3:x+(s/2)+shapeThickness y3:y+(s/2) inContext:context];
+			[self drawTriangle:x+self.shapeThickness y1:y x2:x+(s/2) y2:y+(s/2)-self.shapeThickness x3:x+s-self.shapeThickness y3:y inContext:context];
+			[self drawTriangle:x y1:y+self.shapeThickness x2:x+(s/2)-self.shapeThickness y2:y+(s/2) x3:x y3:y+s-self.shapeThickness inContext:context];
+			[self drawTriangle:x+self.shapeThickness y1:y+s x2:x+(s/2) y2:y+(s/2)+self.shapeThickness x3:x+s-self.shapeThickness y3:y+s inContext:context];
+			[self drawTriangle:x+s y1:y+self.shapeThickness x2:x+s y2:y+s-self.shapeThickness x3:x+(s/2)+self.shapeThickness y3:y+(s/2) inContext:context];
 			break;
 		case 'b':
 		case 'B':
-			CGContextFillRect(context, CGRectMake(x+(shapeThickness*3), y, shapeThickness, s));
+			CGContextFillRect(context, CGRectMake(x+(self.shapeThickness*3), y, self.shapeThickness, s));
 			break;
 		case 'n':
 		case 'N':
 			CGContextFillRect(context, CGRectMake(x, y, s, s));
 			CGContextSetFillColorWithColor(context, self.baseColor.CGColor);
-			[self drawTriangle:x y1:y x2:x+s-shapeThickness y2:y x3:x y3:y+s-shapeThickness inContext:context];
-			[self drawTriangle:x+shapeThickness y1:y+s x2:x+s y2:y+s x3:x+s y3:y+shapeThickness inContext:context];
+			[self drawTriangle:x y1:y x2:x+s-self.shapeThickness y2:y x3:x y3:y+s-self.shapeThickness inContext:context];
+			[self drawTriangle:x+self.shapeThickness y1:y+s x2:x+s y2:y+s x3:x+s y3:y+self.shapeThickness inContext:context];
 			break;
 		case 'm':
 		case 'M':
 			CGContextFillRect(context, CGRectMake(x, y, s, s));
 			CGContextSetFillColorWithColor(context, self.baseColor.CGColor);
-			[self drawTriangle:x+shapeThickness y1:y x2:x+s y2:y x3:x+s y3:y+s-shapeThickness inContext:context];
-			[self drawTriangle:x y1:y+shapeThickness x2:x y2:y+s x3:x+s-shapeThickness y3:y+s inContext:context];
+			[self drawTriangle:x+self.shapeThickness y1:y x2:x+s y2:y x3:x+s y3:y+s-self.shapeThickness inContext:context];
+			[self drawTriangle:x y1:y+self.shapeThickness x2:x y2:y+s x3:x+s-self.shapeThickness y3:y+s inContext:context];
 			break;
 		case '7':
-			CGContextFillRect(context, CGRectMake(x, y, s, shapeThickness));
+			CGContextFillRect(context, CGRectMake(x, y, s, self.shapeThickness));
 			break;
 		case '8':
-			CGContextFillRect(context, CGRectMake(x, y, s, shapeThickness*2));
+			CGContextFillRect(context, CGRectMake(x, y, s, self.shapeThickness*2));
 			break;
 		case '9':
-			CGContextFillRect(context, CGRectMake(x, y+s-(shapeThickness*2), s, shapeThickness*2));
+			CGContextFillRect(context, CGRectMake(x, y+s-(self.shapeThickness*2), s, self.shapeThickness*2));
 			break;
 		case '4':
-			CGContextFillRect(context, CGRectMake(x, y, shapeThickness, s));
+			CGContextFillRect(context, CGRectMake(x, y, self.shapeThickness, s));
 			break;
 		case '5':
-			CGContextFillRect(context, CGRectMake(x, y, shapeThickness*2, s));
+			CGContextFillRect(context, CGRectMake(x, y, self.shapeThickness*2, s));
 			break;
 		case '6':
-			CGContextFillRect(context, CGRectMake(x+s-(shapeThickness*3), y, shapeThickness*2, s));
+			CGContextFillRect(context, CGRectMake(x+s-(self.shapeThickness*3), y, self.shapeThickness*2, s));
 			break;
 		case '1':
-			CGContextFillRect(context, CGRectMake(x, y+(s/2)-(shapeThickness/2), s, shapeThickness));
-			CGContextFillRect(context, CGRectMake(x+(s/2)-(shapeThickness/2), y, shapeThickness, s/2+shapeThickness/2));
+			CGContextFillRect(context, CGRectMake(x, y+(s/2)-(self.shapeThickness/2), s, self.shapeThickness));
+			CGContextFillRect(context, CGRectMake(x+(s/2)-(self.shapeThickness/2), y, self.shapeThickness, s/2+self.shapeThickness/2));
 			break;
 		case '2':
-			CGContextFillRect(context, CGRectMake(x, y+(s/2)-(shapeThickness/2), s, shapeThickness));
-			CGContextFillRect(context, CGRectMake(x+(s/2)-(shapeThickness/2), y+(s/2)-(shapeThickness/2), shapeThickness, s/2+shapeThickness/2));
+			CGContextFillRect(context, CGRectMake(x, y+(s/2)-(self.shapeThickness/2), s, self.shapeThickness));
+			CGContextFillRect(context, CGRectMake(x+(s/2)-(self.shapeThickness/2), y+(s/2)-(self.shapeThickness/2), self.shapeThickness, s/2+self.shapeThickness/2));
 			break;
 		case '3':
-			CGContextFillRect(context, CGRectMake(x, y+(s/2)-(shapeThickness/2), s/2+shapeThickness/2, shapeThickness));
-			CGContextFillRect(context, CGRectMake(x+(s/2)-(shapeThickness/2), y, shapeThickness, s));
+			CGContextFillRect(context, CGRectMake(x, y+(s/2)-(self.shapeThickness/2), s/2+self.shapeThickness/2, self.shapeThickness));
+			CGContextFillRect(context, CGRectMake(x+(s/2)-(self.shapeThickness/2), y, self.shapeThickness, s));
 			break;
 		case '0':
-			CGContextFillRect(context, CGRectMake(x+(s/2)-(shapeThickness/2), y+(s/2)-(shapeThickness/2), shapeThickness, s/2+shapeThickness/2));
-			CGContextFillRect(context, CGRectMake(x+(s/2)-(shapeThickness/2), y+(s/2)-(shapeThickness/2), s/2+shapeThickness/2, shapeThickness));
+			CGContextFillRect(context, CGRectMake(x+(s/2)-(self.shapeThickness/2), y+(s/2)-(self.shapeThickness/2), self.shapeThickness, s/2+self.shapeThickness/2));
+			CGContextFillRect(context, CGRectMake(x+(s/2)-(self.shapeThickness/2), y+(s/2)-(self.shapeThickness/2), s/2+self.shapeThickness/2, self.shapeThickness));
 			break;
 		case '.':
-			CGContextFillRect(context, CGRectMake(x+(s/2)-(shapeThickness/2), y+(s/2)-(shapeThickness/2), shapeThickness, s/2+shapeThickness/2));
-			CGContextFillRect(context, CGRectMake(x, y+(s/2)-(shapeThickness/2), s/2+shapeThickness/2, shapeThickness));
+			CGContextFillRect(context, CGRectMake(x+(s/2)-(self.shapeThickness/2), y+(s/2)-(self.shapeThickness/2), self.shapeThickness, s/2+self.shapeThickness/2));
+			CGContextFillRect(context, CGRectMake(x, y+(s/2)-(self.shapeThickness/2), s/2+self.shapeThickness/2, self.shapeThickness));
 			break;
 		default:
 			CGContextSetFillColorWithColor(context, self.baseColor.CGColor);
